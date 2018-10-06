@@ -1,10 +1,14 @@
 #Exercise 8 - Rock Paper Scissors
 #PracticePython.org
 
+from random import randint
+
 keep_playing = "y"
 
 def get_player_input():
 	choices = ["rock","paper","scissors","quit"]
+	if single != None:
+		return choices[randint(0,3)]
 	choice = input(f"Choose from {choices[:3]}: ").lower()
 	while choice not in choices:
 		print(f"{choice} is not a valid.")
@@ -29,12 +33,18 @@ def decalre_winner(player1,player2):
 		return print(f"Player 2 wins with {player2} over Player 1's {player1}!")
 
 while keep_playing == "y":
+	single = input("Play against computer?  Y/N: ").lower()
 	player_1 = get_player_input()
 	if quit_early(player_1):
 		break
-	player_2 = get_player_input()
-	if quit_early(player_2):
+	if quit_early(player_1):
 		break
+	if single == "y":
+		player_2 = get_player_input(single)
+	else:
+		player_2 = get_player_input()
+		if quit_early(player_2):
+			break
 	decalre_winner(player_1,player_2)
 	keep_playing = input("Play again? Y/N: ").lower()
 
