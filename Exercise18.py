@@ -3,10 +3,6 @@
 
 from random import randint
 
-the_number = str(randint(1000,10000))
-guessed_dict = {}
-keep_playing = True
-
 def user_guess(num):
 	guess = input("Choose a 4 digit number. ")
 	if guess == "giveme":
@@ -27,15 +23,21 @@ def user_guess(num):
 	for key, val in guessed_dict.items():
 		print(key, val)
 
-while keep_playing:
-	# user_guess(the_number)
-	if user_guess(the_number):
-		play_again = input("Would you like to play again?  Y/N: ").lower()
-		if play_again == "n":
-			keep_playing = False
-		else:
-			the_number = str(randint(1000,10000))
-			guessed_dict = {}
-			number_found = False
+def game(keep_playing,the_number):
+	while keep_playing:
+		# user_guess(the_number)
+		if user_guess(the_number):
+			play_again = input("Would you like to play again?  Y/N: ").lower()
+			if play_again == "n":
+				keep_playing = False
+			else:
+				the_number = str(randint(1000,10000))
+				guessed_dict = {}
+				number_found = False
 
-print("Thank you for playing!")
+if __name__ == "__main__":
+	the_number = str(randint(1000,10000))
+	guessed_dict = {}
+	keep_playing = True
+	game(keep_playing,the_number)
+	print("Thank you for playing!")
